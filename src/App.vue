@@ -1,21 +1,47 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <div>
+    <img width="50" height="50" alt="Vue logo" src="./assets/logo.png" />
+    <div>{{ title }}</div>
+    <FormTodo @cadastrar="addToList($event)"/>
+    <TodoList @deleteById="removeFromList($event)"  @editById="editFromList($event)" :tasks="tasks" />
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<script>
+import FormTodo from './components/FormTodo.vue'
+import TodoList from './components/TodoList.vue'
+
+export default {
+  components: {
+    FormTodo,
+    TodoList
+  },
+  data() {
+    return {
+      title: 'Vue TodoList',
+      tasks: []
+    }
+  },
+  methods: {
+    addToList (text) {
+      this.tasks.push({title: text})
+    },
+    removeFromList (index) {
+      this.tasks.splice(index, 1)
+    },
+    editFromList (event) {
+      this.tasks.splice(event.index, 1, {title: event.text})
+    }
+  }
 }
+</script>
+<style>
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
 </style>
