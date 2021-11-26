@@ -3,7 +3,11 @@
     <img width="50" height="50" alt="Vue logo" src="./assets/logo.png" />
     <div>{{ title }}</div>
     <FormTodo @cadastrar="addToList($event)"/>
-    <TodoList @deleteById="removeFromList($event)"  @editById="editFromList($event)" :tasks="tasks" />
+    <TodoList
+      @deleteById="removeFromList($event)"
+      @editById="editFromList($event)"
+      :tasks="tasks"
+    />
   </div>
 </template>
 
@@ -24,13 +28,13 @@ export default {
   },
   methods: {
     addToList (text) {
-      this.tasks.push({title: text})
+      this.tasks.push(text)
     },
     removeFromList (index) {
       this.tasks.splice(index, 1)
     },
     editFromList (event) {
-      this.tasks.splice(event.index, 1, {title: event.text})
+      this.tasks.splice(event.index, 1, event.text)
     }
   }
 }

@@ -1,14 +1,12 @@
 <template>
   <div class="">
     <div v-for="(task, index) of tasks" :key="index">
-      <span v-if="whoIsEditing !== index">
-        {{ task.title }}
-      </span>
+      <span v-if="editIndex !== index">{{ task }}</span>
       <input v-else v-model="text" type="text"/>
 
       <button @click="$emit('deleteById', index)">X</button>
 
-      <button v-if="whoIsEditing !== index" @click="edit(task, index)">Edit</button >
+      <button v-if="editIndex !== index" @click="edit(task, index)">Edit</button >
       <button v-else @click="submit(index)">Ok</button >
     </div>
   </div>
@@ -20,16 +18,16 @@
     data () {
       return {
         text: '',
-        whoIsEditing: null
+        editIndex: null
       }
     },
     methods: {
       edit (task, index) {
-        this.whoIsEditing = index
-        this.text = task.title
+        this.editIndex = index
+        this.text = task
       },
       submit (index) {
-        this.whoIsEditing = null
+        this.editIndex = null
         this.$emit('editById', {index, text: this.text})
         this.text = ''
       }
