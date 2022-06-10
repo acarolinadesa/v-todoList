@@ -1,4 +1,4 @@
-<p align="center"><img  width="100" alt="react icon" src="https://raw.githubusercontent.com/acarolren/v-todoList/master/src/assets/logo.png"> </p>
+<p align="center"><img  width="100" alt="vue icon" src="https://raw.githubusercontent.com/acarolren/v-todoList/master/src/assets/logo.png"> </p>
 
 # v-todoList
 Lista de tarefas desenvolvida com o framework Vue.js;
